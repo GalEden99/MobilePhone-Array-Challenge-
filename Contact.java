@@ -15,4 +15,12 @@ public class Contact {
     public int getPhoneNumber() {
         return phoneNumber;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

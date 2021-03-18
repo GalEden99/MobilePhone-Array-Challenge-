@@ -17,7 +17,7 @@ public class MobilePhone {
 
     public void modifyContact(int position, Contact newContact){
         contactsList.set(position, newContact);
-        System.out.println("Contact has been modified to " + newContact);
+        System.out.println("Contact has been modified.");
 
     }
 
@@ -44,18 +44,21 @@ public class MobilePhone {
 
     public void queryContact(String contactName, int contactPhoneNumber){
         Contact contact = new Contact(contactName, contactPhoneNumber);
+        contactsList.add(contact);
     }
 
     public void printContactList(){
         for(int i=0; i<contactsList.size(); i++){
-            System.out.println((i+1) + ". " + contactsList.get(i)); // check get(i)
+            System.out.println((i+1) + ". " + contactsList.get(i).getName()
+                    + " -> " + contactsList.get(i).getPhoneNumber() ); // check get(i)
         }
     }
 
     public int findPositionByName(String searchContactName){
         for (int i=0; i<contactsList.size(); i++){
-            Contact currentContact = contactsList.get(i);
-            if (currentContact.getName()==searchContactName){
+            String currentName = contactsList.get(i).getName();
+
+            if (searchContactName.equals(currentName) ){
                 return i; // found position
             }
         }

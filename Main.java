@@ -23,7 +23,20 @@ public class Main {
                     mobilePhone.printContactList();
                     break;
                 case 2:
-
+                    addContact();
+                    break;
+                case 3:
+                    updateContact();
+                    break;
+                case 4:
+                    removeContact();
+                    break;
+                case 5:
+                    searchForContact();
+                    break;
+                case 6:
+                    quit = true;
+                    break;
             }
         }
     }
@@ -51,10 +64,42 @@ public class Main {
 
             mobilePhone.queryContact(contactName, contactPhoneNumber);
         }
-
-
     }
 
+    public static void updateContact(){
+        System.out.println("Enter the name of contact to modify: ");
+        String contactName = scanner.nextLine();
+        int position = mobilePhone.findPositionByName(contactName);
 
+        System.out.println("position = " + position);
+
+        if (position>=0){
+            System.out.println("Enter contact's new phone number: ");
+            int contactPhoneNumber = scanner.nextInt();
+
+            Contact newContact = new Contact(contactName, contactPhoneNumber);
+            mobilePhone.modifyContact(position, newContact);
+        } else {
+            System.out.println("Contact does not exists.");
+        }
+    }
+
+    public static void removeContact(){
+        System.out.println("Enter contact name to remove: ");
+        String removeName = scanner.nextLine();
+        int position = mobilePhone.findPositionByName(removeName);
+
+        mobilePhone.removeContact(position);
+    }
+
+    public static void searchForContact(){
+        System.out.println("Contact to search for: ");
+        String searchName = scanner.nextLine();
+        int position = mobilePhone.findPositionByName(searchName);
+
+        if (position>=0){
+            System.out.println("Found contact.");
+        } else System.out.println("Contact not found.");
+    }
 
 }
